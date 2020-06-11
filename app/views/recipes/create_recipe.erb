@@ -1,0 +1,27 @@
+<form action='/recipes' method='post'>
+    <label for='title'>Recipe title</label>
+    <input type='text' name='title' required>
+    <label for='description'>Description</label>
+    <input type='text' name='desc' required>
+    <label for='category'>Category</label>
+    <select name='category' required>
+        <option value='breakfast'>Breakfast</option>
+        <option value='lunch'>Lunch</option>
+        <option value='dinner'>Dinner</option>
+        <option value='appetizer'>Appetizer</option>
+        <option value='dessert'>Dessert</option>
+    </select>
+    <label for='prep_time'>Prep time</label>
+    <input type='text' name='prep_time' value='Minutes'>
+    <label for='cook_time'>Cook time</label>
+    <input type='text' name='cook_time' value='Minutes'>
+    <label for='servings'># Servings</label>
+    <input type='text' name='servings'>
+    <label for='ingredients'>Ingredients</label>
+    <textarea placeholder="One ingredient per line" name='ingredients' rows="4" cols="50">
+    </textarea>
+    <label for='directions'>Directions</label>
+    <textarea placeholder='One step per line' name='directions' rows="4" cols="50">
+    </textarea>
+    <input type='submit' value='Add Recipe'>
+</form> 
