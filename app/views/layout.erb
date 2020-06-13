@@ -8,15 +8,29 @@
 
     <body>
         <header>
+            <h1>MiRecipe</h1>
             <nav>
                 <ul>
-                <li>Categories</li>
-                <li>Favorites</li>
-                <li>Profile</li>
-                <li>Login</li>
-            </ul>
+                    <li><a href='#'>Categories</a></li>
+                    <li><a href='#'>Favorites</a></li>
+                    <li><a href='#'>Profile</a></li>
+                    <li><a href='#'>Login</a></li>
+                </ul>
             </nav>
         </header>
+
         <%= yield %>
+
+        <footer>
+            &copy; Copyright 2020 MiRecipe
+            <div class='wrapper'>
+                <ul>
+                    <li><a href='#'>Categories</a></li>
+                    <li><a href='#'>Favorites</a></li>
+                    <li><a href='#'>Profile</a></li>
+                    <li><a href='#'>Login</a></li>
+                </ul>
+            </div>
+        </footer>
     </body>
 </html>
