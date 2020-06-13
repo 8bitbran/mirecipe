@@ -12,16 +12,16 @@
         <option value='dessert'>Dessert</option>
     </select>
     <label for='prep_time'>Prep time</label>
-    <input type='text' name='prep_time' value='Minutes'>
+    <input type='text' name='prep_time' placeholder='Minutes' required>
     <label for='cook_time'>Cook time</label>
-    <input type='text' name='cook_time' value='Minutes'>
+    <input type='text' name='cook_time' placeholder='Minutes' required>
     <label for='servings'># Servings</label>
-    <input type='text' name='servings'>
+    <input type='text' name='servings' required>
     <label for='ingredients'>Ingredients</label>
-    <textarea placeholder="One ingredient per line" name='ingredients' rows="4" cols="50">
+    <textarea placeholder="One ingredient per line" name='ingredients' rows="4" cols="50" required>
     </textarea>
     <label for='directions'>Directions</label>
-    <textarea placeholder='One step per line' name='directions' rows="4" cols="50">
+    <textarea placeholder='One step per line' name='directions' rows="4" cols="50" required>
     </textarea>
     <input type='submit' value='Add Recipe'>
 </form> 
