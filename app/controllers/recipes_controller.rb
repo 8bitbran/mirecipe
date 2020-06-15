@@ -15,6 +15,17 @@ class RecipesController < ApplicationController
 
     get '/recipes/:id' do
         @recipe = Recipe.find_by_id(params[:id])
-        erb :'recipes/view_recipe'
+        erb :'/recipes/view_recipe'
     end
+
+    get '/recipes/:id/edit' do 
+        @recipe = Recipe.find_by_id(params[:id])
+        erb :'/recipes/edit_recipe'
+    end 
+
+    patch '/recipes/:id' do 
+        @recipe = Recipe.find_by_id(params[:id])
+        @recipe.update_recipe(params)
+        redirect :"/recipes/#{@recipe.id}"
+    end 
 end
