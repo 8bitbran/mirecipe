@@ -14,7 +14,12 @@
                     <li><a href='#'>Categories</a></li>
                     <li><a href='#'>Favorites</a></li>
                     <li><a href='#'>Profile</a></li>
-                    <li><a href='#'>Login</a></li>
+                    <% if Helpers.is_logged_in?(session) %>
+                        <li><a href='/logout'>Logout</a></li>
+                    <% else %>
+                        <li><a href='/login'>Login</a></li>
+                        <li><a href='/signup'>Signup</a></li>
+                    <% end %> 
                 </ul>
             </nav>
         </header>
@@ -24,11 +29,17 @@
         <footer>
             &copy; Copyright 2020 MiRecipe
             <div class='wrapper'>
-                <ul>
+                <ul class='footer-pages'>
                     <li><a href='#'>Categories</a></li>
                     <li><a href='#'>Favorites</a></li>
-                    <li><a href='#'>Profile</a></li>
-                    <li><a href='#'>Login</a></li>
+                    <% if Helpers.is_logged_in?(session) %>
+                        <li><a href='#'>Profile</a></li>
+                    <% end %>
+                </ul>
+                <ul class='footer-social'>
+                    <li><img src='' alt='Instagram'></li>
+                    <li><img src='' alt='Twitter'></li>
+                    <li><img src='' alt='Facebook'></li>
                 </ul>
             </div>
         </footer>
