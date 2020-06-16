@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2020_06_10_163007) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.string "first_name"
+    t.string "last_name"
   end
 
 end
