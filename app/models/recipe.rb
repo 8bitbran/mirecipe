@@ -11,4 +11,8 @@ class Recipe < ActiveRecord::Base
         @ingredients = params[:ingredients]
         @directions = params[:directions]
     end 
+
+    def total_time
+        "#{@prep_time.to_i + @cook_time.to_i}"
+    end 
 end 
