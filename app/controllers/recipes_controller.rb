@@ -44,7 +44,7 @@ class RecipesController < ApplicationController
     get '/myrecipes' do 
         if Helpers.is_logged_in?(session)
             @recipes = Recipe.all.select{|recipe| recipe.user_id == Helpers.current_user(session).id}
-            erb :'/recipes/myrecipes'
+            erb :'/recipes/my_recipes'
         else 
             redirect '/'
         end
