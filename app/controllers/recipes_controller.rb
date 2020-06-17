@@ -1,6 +1,10 @@
 class RecipesController < ApplicationController
     get '/recipes/new' do 
-        erb :'/recipes/create_recipe'
+        if !Helpers.is_logged_in?(session)
+            redirect '/login'
+        else
+            erb :'/recipes/create_recipe'
+        end 
     end 
 
     post '/recipes' do 
@@ -19,8 +23,16 @@ class RecipesController < ApplicationController
     end
 
     get '/recipes/:id/edit' do 
-        @recipe = Recipe.find_by_id(params[:id])
-        erb :'/recipes/edit_recipe'
+        if Helpers.is_logged_in?(session)
+            @recipe = Recipe.find_by_id(params[:id])
+            if Helpers.current_user(session).id == @recipe.user_id
+                erb :'/recipes/edit_recipe'
+            else 
+                redirect '/'
+            end 
+        else 
+            redirect '/login'
+        end
     end 
 
     patch '/recipes/:id' do 
@@ -28,4 +40,28 @@ class RecipesController < ApplicationController
         @recipe.update_recipe(params)
         redirect :"/recipes/#{@recipe.id}"
     end 
+
+    get '/myrecipes' do 
+        if Helpers.is_logged_in?(session)
+            @recipes = Recipe.all.select{|recipe| recipe.user_id == Helpers.current_user(session).id}
+            erb :'/recipes/myrecipes'
+        else 
+            redirect '/'
+        end
+    end 
+
+    delete '/recipes/:id' do
+        @recipe = Recipe.find(params[:id])
+        if Helpers.is_logged_in?(session)
+            if Helpers.current_user(session).id == @recipe.user_id
+                @recipe = Recipe.find(params[:id])
+                @recipe.destroy
+                redirect "/myrecipes"
+            else
+                redirect "/myrecipes"
+            end 
+        else 
+            redirect "/login"
+        end
+    end
 end
