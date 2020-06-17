@@ -19,5 +19,6 @@
 </div>
 
 <% if @recipe.used_id == session[user_id] %>
-<button type='submit' formmethod='get' formaction="/recipes/<%= @recipe.id %>/edit">Edit Recipe</button>
+<button type='submit' formmethod='get' formaction="/recipes/<%= @recipe.id %>/edit">Edit</button>
+<button type='submit' formmethod='delete' formaction="/recipes/<%= @recipe.id %>">Delete</button>
 <% end %>
