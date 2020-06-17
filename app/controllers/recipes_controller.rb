@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
 
     post '/recipes' do 
         if params.any?
-            recipe = Recipe.create(params)
+            recipe = Recipe.create(title: params[:title], category: params[:category], description: params[:description], cook_time: params[:cook_time], prep_time: params[:prep_time],  ingredients: params[:ingredients], directions: params[:directions], servings: params[:servings], user_id: session[:user_id])
             redirect "/recipes/#{recipe.id}"
         else
             @error = 'You must fill in all fields correctly.'
