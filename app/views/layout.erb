@@ -15,6 +15,7 @@
                     <li><a href='#'>Favorites</a></li>
                     <li><a href='#'>Profile</a></li>
                     <% if Helpers.is_logged_in?(session) %>
+                        <li><a href='/myrecipes'>Your Recipes</a></li>
                         <li><a href='/logout'>Logout</a></li>
                     <% else %>
                         <li><a href='/login'>Login</a></li>
