@@ -1,6 +1,6 @@
 <div class='recipe-head'>
     <h1><%= @recipe.title %></h1>
-    <p><strong>Category:</strong><%= @recipe.category %></p>
+    <p><strong>Category: </strong><%= @recipe.category %></p>
     <p><%= @recipe.description %></p>
 </div>
 <div class='recipe-info'>
@@ -20,11 +20,11 @@
 
 <% if @recipe.user_id == session[:user_id] %>
 <form action="/recipes/<%= @recipe.id %>/edit" method="get">
-  <input id="hidden" type="hidden" name="_method" value="get">
-  <input type="submit" name='submit' id='Edit Tweet' value="Edit">
+  <input type="hidden" name="_method" value="get">
+  <input type="submit" value="Edit">
 </form>
-<form action="/recipes/<%= @recipe.id %>" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" name='submit' id='Delete Recipe' value="Delete">
+<form action="/recipes/<%= @recipe.id %>/delete" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
 </form>
 <% end %>
