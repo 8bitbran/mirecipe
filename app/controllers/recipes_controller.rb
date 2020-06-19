@@ -41,16 +41,7 @@ class RecipesController < ApplicationController
         redirect :"/recipes/#{@recipe.id}"
     end 
 
-    get '/myrecipes' do 
-        if Helpers.is_logged_in?(session)
-            @recipes = Recipe.all.select{|recipe| recipe.user_id == Helpers.current_user(session).id}
-            erb :'/recipes/my_recipes'
-        else 
-            redirect '/'
-        end
-    end 
-
-    delete '/recipes/:id' do
+    delete '/recipes/:id/delete' do
         @recipe = Recipe.find(params[:id])
         if Helpers.is_logged_in?(session)
             if Helpers.current_user(session).id == @recipe.user_id
