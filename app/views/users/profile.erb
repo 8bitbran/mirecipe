@@ -1,0 +1,10 @@
+<h1>Hello, <%= @user.first_name %>!</h1>
+<p>You have <%= @user.recipes.count %> recipes</p>
+<h2>Your Recipes</h2>
+<br>
+<% @user.recipes.each do |recipe| %>
+    <h3><%= recipe.title %></h3>
+    <p><%= recipe.description %></p>
+    <p><a href="/recipes/<%= recipe.id %>">View Recipe</a></p>
+    <br>
+<% end %>
