@@ -11,10 +11,9 @@
             <h1>MiRecipe</h1>
             <nav>
                 <ul>
-                    <li><a href='#'>Categories</a></li>
-                    <li><a href='#'>Favorites</a></li>
                     <% if Helpers.is_logged_in?(session) %>
                         <li><a href='/profile'>Profile</a></li>
+                        <li><a href='/recipes/new'>Add Recipe</a></li>
                         <li><a href='/logout'>Logout</a></li>
                     <% else %>
                         <li><a href='/login'>Login</a></li>
