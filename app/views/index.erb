@@ -5,11 +5,12 @@
 
     <body>
         <div class='hero-landing'>
-            <h2>Recipe of the Day</h2>
-            <img src='' alt=''>
-            <h3>Asian Glazed Chicken</h3>
-            <p>Curabitur augue dui, vehicula et sapien sagittis, egestas ullamcorper ligula. Nulla turpis elit, egestas ac euismod at, imperdiet fringilla leo.</p>
-            <img src='' alt=''>
+            <h2>Recent Recipes</h2>
+            <% Recipe.all.last(5).reverse.each do |recipe| %>
+            <h3><%= recipe.title %></h3>
+            <p><%= recipe.description %></p>
+            <p><a href="/recipes/<%= recipe.id %>">View Recipe</a></p>
+            <% end %>
         </div>
 
         <div class='categories'>
