@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
     get '/recipes/:id/edit' do 
         if Helpers.is_logged_in?(session)
             @recipe = Recipe.find_by_id(params[:id])
-            if Helpers.current_user(session).id == @recipe.user_id
+            if Helpers.current_user(session) == @recipe.user
                 erb :'/recipes/edit_recipe'
             else 
                 redirect '/'
@@ -36,20 +36,34 @@ class RecipesController < ApplicationController
     end 
 
     patch '/recipes/:id' do 
-        @recipe = Recipe.find_by_id(params[:id])
-        @recipe.update_recipe(params)
-        redirect :"/recipes/#{@recipe.id}"
+        if !params.empty?
+            @recipe = Recipe.find(params[:id])
+            @recipe.title = params[:title]
+            @recipe.description = params[:description]
+            @recipe.category = params[:category]
+            @recipe.prep_time = params[:prep_time]
+            @recipe.cook_time = params[:cook_time]
+            @recipe.servings = params[:servings]
+            @recipe.ingredients = params[:ingredients]
+            @recipe.directions = params[:directions]
+            @recipe.save
+            redirect "/recipes/#{params[:id]}"
+        else
+            redirect "/recipes/#{params[:id]}/edit"
+        end
+
+        redirect :"/recipes/#{params[:id]}"
     end 
 
     delete '/recipes/:id/delete' do
         @recipe = Recipe.find(params[:id])
         if Helpers.is_logged_in?(session)
-            if Helpers.current_user(session).id == @recipe.user_id
+            if Helpers.current_user(session) == @recipe.user
                 @recipe = Recipe.find(params[:id])
                 @recipe.destroy
-                redirect "/myrecipes"
+                redirect "/profile"
             else
-                redirect "/myrecipes"
+                redirect "/profile"
             end 
         else 
             redirect "/login"
