@@ -15,7 +15,7 @@ class UsersController < ApplicationController
             redirect '/signup'
         end 
 
-        redirect '/myrecipes'
+        redirect '/profile'
     end 
 
     get '/login' do
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
         if @user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id
-            redirect to '/myrecipes'
+            redirect to '/profile'
         else
             redirect to '/login'
 		end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
     get '/profile' do
         if Helpers.is_logged_in?(session)
-            @user = User.find_by_id(session[:user_id])
+            @user = User.find(session[:user_id])
             erb :'/users/profile'
         else
             redirect '/login'
