@@ -8,11 +8,12 @@ class UsersController < ApplicationController
     end 
 
     post '/signup' do 
+        puts params
         if !params.empty?
             if Helpers.valid_email?(params[:email]) && Helpers.valid_username?(params[:username])
-                user = User.create(params)
-                session[:user_id] = user.id
-                redirect '/profile'
+                    user = User.create(params)
+                    session[:user_id] = user.id
+                    redirect '/profile'
             else
                 redirect '/signup'
             end

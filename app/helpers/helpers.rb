@@ -8,7 +8,7 @@ class Helpers
     def self.valid_username?(username)
         username =~ /\A[a-z0-9_]{4,16}\z/
     end 
-
+    
     def self.current_user(session)
         User.find_by(id: session[:user_id])
     end

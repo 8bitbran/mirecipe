@@ -1,6 +1,5 @@
 <h1>Hello, <%= @user.first_name %>!</h1>
 <h2>Your Recipes</h2>
-<p>You have <%= @user.recipes.count %> recipes</p>
 <br>
 <% @user.recipes.each do |recipe| %>
     <h3><%= recipe.title %></h3>

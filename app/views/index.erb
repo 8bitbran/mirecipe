@@ -8,6 +8,7 @@
             <h2>Recent Recipes</h2>
             <% Recipe.all.last(5).reverse.each do |recipe| %>
             <h3><%= recipe.title %></h3>
+            <p>Category: <%= recipe.category %></p>
             <p><%= recipe.description %></p>
             <p><a href="/recipes/<%= recipe.id %>">View Recipe</a></p>
             <% end %>
