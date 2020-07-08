@@ -9,11 +9,11 @@ class RecipesController < ApplicationController
 
     post '/recipes' do 
         if params.any?
-            recipe = Recipe.create(title: params[:title], category: params[:category], description: params[:description], cook_time: params[:cook_time], prep_time: params[:prep_time],  ingredients: params[:ingredients], directions: params[:directions], servings: params[:servings], user_id: session[:user_id])
+            recipe = Recipe.create(params)
             redirect "/recipes/#{recipe.id}"
         else
             @error = 'You must fill in all fields correctly.'
-            redirect '/recipes/new'
+            erb :'/recipes/new'
         end
     end 
 
@@ -37,7 +37,8 @@ class RecipesController < ApplicationController
 
     patch '/recipes/:id' do 
         if !params.empty?
-            @recipe = Recipe.find(params[:id])
+            set_recipe
+            #.update
             @recipe.title = params[:title]
             @recipe.description = params[:description]
             @recipe.category = params[:category]
@@ -56,7 +57,8 @@ class RecipesController < ApplicationController
     end 
 
     delete '/recipes/:id/delete' do
-        @recipe = Recipe.find(params[:id])
+        set_recipe
+        #redirect_if_not_logged_in
         if Helpers.is_logged_in?(session)
             if Helpers.current_user(session) == @recipe.user
                 @recipe = Recipe.find(params[:id])
@@ -68,5 +70,11 @@ class RecipesController < ApplicationController
         else 
             redirect "/login"
         end
+    end
+
+    private 
+
+    def set_recipe
+        @recipe = Recipe.find_by_id(params[:id])
     end
 end
