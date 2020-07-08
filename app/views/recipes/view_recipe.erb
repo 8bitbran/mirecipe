@@ -6,7 +6,7 @@
 <div class='recipe-info'>
     <p><strong>Prep:</strong> <%= @recipe.prep_time %> mins</p>
     <p><strong>Cook:</strong> <%= @recipe.cook_time %> mins</p>
-    <p><strong>Total:</strong> <%= @recipe.total_time %> mins</p>
+    <p><strong>Total:</strong> <%= @recipe.prep_time + @recipe.cook_time %> mins</p>
     <p><strong>Servings:</strong> <%= @recipe.servings %> mins</p>
 </div>
 
