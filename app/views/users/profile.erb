@@ -1,5 +1,11 @@
 <h1>Hello, <%= @user.first_name %>!</h1>
 <h2>Your Recipes</h2>
+<p>You have <%= @user.recipes.size %> 
+<% if @user.recipes.size == 1 %>
+recipe.
+<% else %> 
+recipes.
+<% end %></p>
 <br>
 <% @user.recipes.each do |recipe| %>
     <h3><%= recipe.title %></h3>
